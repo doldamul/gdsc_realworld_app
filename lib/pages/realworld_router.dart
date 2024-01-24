@@ -21,7 +21,7 @@ class _RealWorldRouterState extends State<RealWorldRouter> {
       routes: [
         GoRoute(
           path: '/',
-          builder: (context, state) => const HomePage(),
+          builder: (context, state) => HomePage(),
         ),
       ],
     );

@@ -1,24 +1,70 @@
 import 'package:flutter/material.dart';
+import 'package:realworld_app/pages/home/article_listitem.dart';
+import 'package:realworld_app/pages/home/page_index_switcher.dart';
+import 'package:realworld_app/pages/home/tag_toggles.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class HomePage extends StatelessWidget {
+  HomePage({super.key});
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
+  static const font = TextStyle(fontSize: 20);
+  static const mock_tags = [
+    'apple',
+    'banana',
+    'cake',
+    'donut',
+    'egg',
+    'french fry',
+    'grape',
+    'hot dog',
+  ];
 
-class _HomePageState extends State<HomePage> {
+  var list = <Widget>[
+    for (var i=0; i < 20; i++) ...[
+      ArticleListItem(),
+      Divider(height: 1),
+    ],
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('RealWorld'),
-        actions: const [
-          // HINT: AppBar 오른쪽에 위젯을 배치하고 싶은 경우 여기에 추가하면 됩니다.
+        actions: [
+          TextButton(
+            onPressed: () {},
+            child: const Text('Sign in'),
+          ),
+          TextButton(
+            onPressed: () {},
+            child: const Text('Sign up'),
+          ),
         ],
       ),
-      body: const Center(
-        child: Text('/home'),
+      body: SingleChildScrollView(
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width,
+          child: Column(
+            children: [
+              ...list,
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+                child: Column(
+                  children: [
+                    Padding(
+                        padding: EdgeInsets.only(bottom: 10),
+                        child: Text('Popular Tags'),
+                    ),
+                    TagToggles(
+                      tags: mock_tags,
+                    ),
+                    PageIndexSwitcher(count: 20),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
