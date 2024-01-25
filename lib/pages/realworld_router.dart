@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 import 'package:realworld_app/pages/home/home_page.dart';
+import 'package:realworld_app/pages/article/article_page.dart';
 
 class RealWorldRouter extends StatefulWidget {
   const RealWorldRouter({super.key});
@@ -21,6 +22,7 @@ class _RealWorldRouterState extends State<RealWorldRouter> {
       routes: [
         GoRoute(
           path: '/',
+          // builder: (context, state) => ArticlePage(),
           builder: (context, state) => HomePage(),
         ),
       ],
