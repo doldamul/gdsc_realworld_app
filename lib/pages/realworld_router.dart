@@ -5,6 +5,7 @@ import 'package:realworld_app/pages/article/article_page.dart';
 import 'package:realworld_app/pages/sign_up/sign_up_page.dart';
 import 'package:realworld_app/pages/sign_in/sign_in_page.dart';
 import 'package:realworld_app/pages/profile/profile_page.dart';
+import 'package:realworld_app/pages/setting/setting_page.dart';
 
 class RealWorldRouter extends StatefulWidget {
   const RealWorldRouter({super.key});
@@ -25,6 +26,7 @@ class _RealWorldRouterState extends State<RealWorldRouter> {
       routes: [
         GoRoute(
           path: '/',
+          // builder: (context, state) => SettingPage(),
           // builder: (context, state) => ProfilePage(),
           // builder: (context, state) => SignUpPage(),
           // builder: (context, state) => SignInPage(),
