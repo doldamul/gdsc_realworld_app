@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({super.key});
@@ -17,7 +18,9 @@ class SignUpPage extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           children: [
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                context.go('/login');
+              },
               child: const Text('Have an account?'),
             ),
             TextField(

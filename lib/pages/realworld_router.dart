@@ -26,12 +26,29 @@ class _RealWorldRouterState extends State<RealWorldRouter> {
       routes: [
         GoRoute(
           path: '/',
-          // builder: (context, state) => SettingPage(),
-          // builder: (context, state) => ProfilePage(),
-          // builder: (context, state) => SignUpPage(),
-          // builder: (context, state) => SignInPage(),
-          // builder: (context, state) => ArticlePage(),
           builder: (context, state) => HomePage(),
+          routes: [
+            GoRoute(
+              path: 'login',
+              builder: (context, state) => SignInPage(),
+            ),
+            GoRoute(
+              path: 'register',
+              builder: (context, state) => SignUpPage(),
+            ),
+          ],
+        ),
+        GoRoute(
+          path: '/settings',
+          builder: (context, state) => SettingPage(),
+        ),
+        GoRoute(
+          path: '/profile', // TODO: '/profile/:userID'
+          builder: (context, state) => ProfilePage(),
+        ),
+        GoRoute(
+          path: '/article', // TODO: '/article/:articleID'
+          builder: (context, state) => ArticlePage(),
         ),
       ],
     );

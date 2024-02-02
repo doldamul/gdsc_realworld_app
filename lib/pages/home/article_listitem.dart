@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:realworld_app/pages/home/tag_labels.dart';
 
 class ArticleListItem extends StatelessWidget {
@@ -23,7 +24,9 @@ class ArticleListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        context.push('/article');
+      },
       child: Padding(
         padding: EdgeInsets.all(10),
         child: Column (
@@ -32,7 +35,9 @@ class ArticleListItem extends StatelessWidget {
               children: [
                 Expanded(
                   child: InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      context.push('/profile');
+                    },
                     child: Padding(
                       padding: EdgeInsets.symmetric(vertical: 10),
                       child: Row(

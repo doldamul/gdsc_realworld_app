@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:realworld_app/pages/home/article_listitem.dart';
 import 'package:realworld_app/pages/home/page_index_switcher.dart';
 import 'package:realworld_app/pages/home/tag_toggles.dart';
@@ -32,11 +33,15 @@ class HomePage extends StatelessWidget {
         title: const Text('RealWorld'),
         actions: [
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              context.go('/login');
+            },
             child: const Text('Sign in'),
           ),
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              context.go('/register');
+            },
             child: const Text('Sign up'),
           ),
         ],

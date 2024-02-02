@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ArticlePage extends StatelessWidget {
   const ArticlePage({super.key});
@@ -46,7 +47,9 @@ class ArticlePage extends StatelessWidget {
                       children: [
                         Expanded(
                           child: InkWell (
-                            onTap: () {},
+                            onTap: () {
+                              context.push('/profile');
+                            },
                             child: Padding(
                               padding: EdgeInsets.all(20),
                               child: Column(
@@ -93,7 +96,7 @@ class ArticlePage extends StatelessWidget {
                     ],
                   ),
                 ],
-              )
+              ),
             ),
             Divider(height: 1),
             // duplicate of article_listitem
@@ -101,7 +104,9 @@ class ArticlePage extends StatelessWidget {
               children: [
                 Expanded(
                   child: InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      context.push('/profile');
+                    },
                     child: Padding(
                       padding: EdgeInsets.all(20),
                       child: Column(
@@ -134,7 +139,7 @@ class ArticlePage extends StatelessWidget {
             )
           ],
         ),
-      )
+      ),
     );
   }
 }
