@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:realworld_app/pages/home/tag_labels.dart';
+
+import 'package:realworld_app/bloc/router/router_bloc.dart';
+import 'package:realworld_app/bloc/router/router_event.dart';
+import 'package:realworld_app/constants/routes.dart';
 
 class ArticleListItem extends StatelessWidget {
   const ArticleListItem({super.key});
@@ -25,7 +29,7 @@ class ArticleListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.push('/article');
+        context.read<RouterBloc>().add(PushRouteEvent(context, Routes.article));
       },
       child: Padding(
         padding: EdgeInsets.all(10),
@@ -36,7 +40,7 @@ class ArticleListItem extends StatelessWidget {
                 Expanded(
                   child: InkWell(
                     onTap: () {
-                      context.push('/profile');
+                      context.read<RouterBloc>().add(PushRouteEvent(context, Routes.profile));
                     },
                     child: Padding(
                       padding: EdgeInsets.symmetric(vertical: 10),

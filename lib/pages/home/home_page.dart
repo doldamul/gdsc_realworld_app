@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:realworld_app/pages/home/article_listitem.dart';
 import 'package:realworld_app/pages/home/page_index_switcher.dart';
 import 'package:realworld_app/pages/home/tag_toggles.dart';
+import 'package:realworld_app/bloc/router/router_bloc.dart';
+import 'package:realworld_app/bloc/router/router_event.dart';
+import 'package:realworld_app/constants/routes.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -34,13 +37,13 @@ class HomePage extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () {
-              context.go('/login');
+              context.read<RouterBloc>().add(GoRouteEvent(context, Routes.sign_in));
             },
             child: const Text('Sign in'),
           ),
           TextButton(
             onPressed: () {
-              context.go('/register');
+              context.read<RouterBloc>().add(GoRouteEvent(context, Routes.sign_up));
             },
             child: const Text('Sign up'),
           ),

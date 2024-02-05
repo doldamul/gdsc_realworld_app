@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:realworld_app/bloc/router/router_bloc.dart';
+import 'package:realworld_app/bloc/router/router_event.dart';
+import 'package:realworld_app/constants/routes.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({super.key});
@@ -19,7 +22,7 @@ class SignUpPage extends StatelessWidget {
           children: [
             TextButton(
               onPressed: () {
-                context.go('/login');
+                context.read<RouterBloc>().add(GoRouteEvent(context, Routes.sign_in));
               },
               child: const Text('Have an account?'),
             ),

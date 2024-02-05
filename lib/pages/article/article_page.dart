@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:realworld_app/bloc/router/router_bloc.dart';
+import 'package:realworld_app/bloc/router/router_event.dart';
+import 'package:realworld_app/constants/routes.dart';
 
 class ArticlePage extends StatelessWidget {
   const ArticlePage({super.key});
@@ -48,7 +51,7 @@ class ArticlePage extends StatelessWidget {
                         Expanded(
                           child: InkWell (
                             onTap: () {
-                              context.push('/profile');
+                              context.read<RouterBloc>().add(PushRouteEvent(context, Routes.profile));
                             },
                             child: Padding(
                               padding: EdgeInsets.all(20),
@@ -105,7 +108,7 @@ class ArticlePage extends StatelessWidget {
                 Expanded(
                   child: InkWell(
                     onTap: () {
-                      context.push('/profile');
+                      context.read<RouterBloc>().add(PushRouteEvent(context, Routes.profile));
                     },
                     child: Padding(
                       padding: EdgeInsets.all(20),
