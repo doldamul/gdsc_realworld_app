@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:realworld_app/interceptors/auth_interceptor.dart';
 import 'package:realworld_app/interceptors/no_auth_interceptor.dart';
-import 'package:realworld_app/models/user_model.dart'; // 구현 예정
+import 'package:realworld_app/models/user_model.dart';
 
 class AuthRepository {
   Future<UserModel> postLogin({

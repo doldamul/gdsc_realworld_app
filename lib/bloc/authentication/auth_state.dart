@@ -4,10 +4,13 @@ import 'package:realworld_app/models/user_model.dart';
 abstract class AuthState extends Equatable {}
 
 class AuthUnknownState extends AuthState {
-  AuthUnknownState();
+  final String? errorMessage;
+
+  AuthUnknownState() : errorMessage = null;
+  AuthUnknownState.error({this.errorMessage});
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [errorMessage];
 }
 
 class AuthAuthenticatedState extends AuthState {
@@ -19,15 +22,4 @@ class AuthAuthenticatedState extends AuthState {
 
   @override
   List<Object?> get props => [user];
-}
-
-class AuthErrorState extends AuthState {
-  final String message;
-
-  AuthErrorState({
-    required this.message,
-  });
-
-  @override
-  List<Object?> get props => [message];
 }
