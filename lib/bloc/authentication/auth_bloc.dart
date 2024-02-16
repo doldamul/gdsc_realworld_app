@@ -5,6 +5,7 @@ import 'package:realworld_app/bloc/authentication/auth_event.dart';
 import 'package:realworld_app/bloc/authentication/auth_state.dart';
 import 'package:realworld_app/constants/strings.dart';
 import 'package:realworld_app/repository/auth_repository.dart';
+// import 'package:realworld_app/models/user_model.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthRepository authRepository;
@@ -22,6 +23,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       AuthRegister event,
     Emitter<AuthState> emit,
   ) async {
+    emit(AuthProgressingState());
+
     try {
       var user = await authRepository.postRegister(username: event.username, email: event.email, password: event.password);
 
@@ -39,10 +42,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     AuthLogin event,
     Emitter<AuthState> emit,
   ) async {
+    emit(AuthProgressingState());
+
     try {
       if (event.user == null)
         event.user = await authRepository.postLogin(email: event.email, password: event.password);
     } on DioException catch (e) {
+      // event.user = UserModel(email: 'test@gdsc.com', username: 'doldamul', token: 'abcdefgh');
       _dioErrorHandler(e);
       return;
     } catch (e) {

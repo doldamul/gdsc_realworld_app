@@ -6,6 +6,8 @@ import 'package:realworld_app/pages/home/tag_toggles.dart';
 import 'package:realworld_app/bloc/router/router_bloc.dart';
 import 'package:realworld_app/bloc/router/router_event.dart';
 import 'package:realworld_app/constants/routes.dart';
+import 'package:realworld_app/bloc/authentication/auth_bloc.dart';
+import 'package:realworld_app/bloc/authentication/auth_state.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -29,25 +31,57 @@ class HomePage extends StatelessWidget {
     ],
   ];
 
+  var toolbar = BlocBuilder<AuthBloc, AuthState>(
+    buildWhen: (prev, curr) => prev != curr,
+    builder: (context, state) {
+      if (state is AuthAuthenticatedState)
+        return Row(
+          children: [
+            TextButton(
+              onPressed: () {
+                context.read<RouterBloc>().add(PushRouteEvent(context, Routes.settings));
+              },
+              child: const Text('Settings'),
+            ),
+            TextButton(
+              onPressed: () {
+                context.read<RouterBloc>().add(PushRouteEvent(context, Routes.profile));
+              },
+              child: Text(state.user.username ?? "anonymous"),
+            ),
+          ],
+        );
+      else if (state is AuthUnknownState)
+        return Row(
+          children: [
+            TextButton(
+              onPressed: () {
+                context.read<RouterBloc>().add(GoRouteEvent(context, Routes.sign_in));
+              },
+              child: const Text('Sign in'),
+            ),
+            TextButton(
+              onPressed: () {
+                context.read<RouterBloc>().add(GoRouteEvent(context, Routes.sign_up));
+              },
+              child: const Text('Sign up'),
+            ),
+          ],
+        );
+      else
+        return Padding(
+          padding: EdgeInsets.symmetric(horizontal: 60),
+          child: CircularProgressIndicator(),
+        );
+    },
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('RealWorld'),
-        actions: [
-          TextButton(
-            onPressed: () {
-              context.read<RouterBloc>().add(GoRouteEvent(context, Routes.sign_in));
-            },
-            child: const Text('Sign in'),
-          ),
-          TextButton(
-            onPressed: () {
-              context.read<RouterBloc>().add(GoRouteEvent(context, Routes.sign_up));
-            },
-            child: const Text('Sign up'),
-          ),
-        ],
+        actions: [toolbar],
       ),
       body: SingleChildScrollView(
         child: SizedBox(

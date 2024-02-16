@@ -75,7 +75,7 @@ class _SignInPageState extends State<SignInPage> {
                           password: passwordController.value.text,
                         )
                       );
-                    // TODO: home에서 login 작업 완료 대기 후 렌더링
+                    
                     context.read<RouterBloc>().add(GoRouteEvent(context, Routes.home));
                   },
                   child: Text('Sign in'),

@@ -23,3 +23,8 @@ class AuthAuthenticatedState extends AuthState {
   @override
   List<Object?> get props => [user];
 }
+
+class AuthProgressingState extends AuthState {
+  @override
+  List<Object?> get props => [];
+}
