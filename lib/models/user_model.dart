@@ -1,8 +1,34 @@
-// temporary
-class UserModel {
-  const UserModel();
+import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
 
-  factory UserModel.fromJson(Map<String, dynamic> json) => const UserModel();
+part 'user_model.g.dart';
 
-  Map<String, dynamic> toJson() => <String, dynamic>{};
+@JsonSerializable(explicitToJson: true)
+class UserModel extends Equatable {
+  final String? email;
+  final String? token;
+  final String? username;
+  final String? bio;
+  final Uri? image;
+
+  const UserModel({
+    this.email,
+    this.token,
+    this.username,
+    this.bio,
+    this.image,
+  });
+
+  factory UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UserModelToJson(this);
+
+  // TODO: copywith?
+
+  @override
+  List<Object?> get props => [
+    email,
+    token,
+    username,
+  ];
 }

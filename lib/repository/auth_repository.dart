@@ -27,7 +27,7 @@ class AuthRepository {
     return UserModel.fromJson(res.data['user']);
   }
 
-  Future<UserModel> postRegistr({
+  Future<UserModel> postRegister({
     required String email,
     required String password,
     required String username,

@@ -33,6 +33,9 @@ class MyApp extends StatelessWidget {
           BlocProvider(
             create: (context) => RouterBloc(),
           ),
+          BlocProvider(
+            create: (context) => AuthBloc(authRepository: context.read<AuthRepository>()),
+          )
         ],
         child: const RealWorldRouter(),
       ),
