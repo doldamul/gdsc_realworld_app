@@ -17,6 +17,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthLogin>(_authLoginHandler);
     on<AuthLogout>(_authLogoutHandler);
     on<AuthGetCurrentUser>(_authGetCurrentUserHandler);
+
+    add(AuthGetCurrentUser());
   }
 
   Future<void> _authRegisterHandler(
@@ -81,6 +83,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     AuthGetCurrentUser event,
     Emitter<AuthState> emit,
   ) async {
+    const _storage = FlutterSecureStorage();
+    final isLoggedIn = await _storage.containsKey(key: Strings.jwtToken);
+    if (!isLoggedIn) return;
+
     try {
       var res = await authRepository.getCurrentUser();
 
