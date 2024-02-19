@@ -61,20 +61,27 @@ class AuthRepository {
   }
 
   Future<UserModel> updateUser({
-    required String email,
-    required String password,
-    required String username,
+    String? email,
+    String? password,
+    String? username,
     String? bio,
+    Uri? image,
   }) async {
     Dio dio = Dio();
     dio.interceptors.add(AuthInterceptor());
 
     Map<String, dynamic> body = {
       'user': {
-        'username': username,
-        'email': email,
-        'password': password,
-        'bio': bio,
+        if (username != null)
+          'username': username,
+        if (email != null)
+          'email': email,
+        if (password != null)
+          'password': password,
+        if (bio != null)
+          'bio': bio,
+        if (image != null)
+          'image': image,
       }
     };
 

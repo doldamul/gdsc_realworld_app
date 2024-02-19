@@ -17,6 +17,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthLogin>(_authLoginHandler);
     on<AuthLogout>(_authLogoutHandler);
     on<AuthGetCurrentUser>(_authGetCurrentUserHandler);
+    on<AuthUpdateUser>(_authUpdateUserHandler);
 
     add(AuthGetCurrentUser());
   }
@@ -101,6 +102,21 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         errorMessage: e.toString(),
       ));
     }
+  }
+
+  Future<void> _authUpdateUserHandler(
+    AuthUpdateUser event,
+    Emitter<AuthState> emit,
+  ) async {
+    var res = await authRepository.updateUser(
+      username: event.newUsername,
+      email: event.newEmail,
+      bio: event.newBio,
+      password: event.newPassword,
+      image: event.newImage,
+    );
+
+    emit(AuthAuthenticatedState(user: res));
   }
 
   void _dioErrorHandler(DioException e) {
