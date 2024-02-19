@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:realworld_app/bloc/authentication/auth_bloc.dart';
+import 'package:realworld_app/bloc/authentication/auth_event.dart';
+import 'package:realworld_app/bloc/router/router_bloc.dart';
+import 'package:realworld_app/bloc/router/router_event.dart';
+import 'package:realworld_app/constants/routes.dart';
 
 class SettingPage extends StatelessWidget {
   const SettingPage({super.key});
@@ -59,7 +65,10 @@ class SettingPage extends StatelessWidget {
               child: Text('Update profile'),
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                context.read<AuthBloc>().add(AuthLogout());
+                context.read<RouterBloc>().add(GoRouteEvent(context, Routes.home));
+              },
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(
                   Colors.deepPurple,
